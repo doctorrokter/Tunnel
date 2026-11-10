@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--
+
+   Copyright (c) 2013-2015 BlackBerry Limited.
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+-->
+<qnx xmlns="http://www.qnx.com/schemas/application/1.0">
+
+    <!-- BlackBerry 10 application descriptor file. Specifies parameters for
+        identifying, installing, and launching native applications on BlackBerry
+        10. -->
+
+    <!-- A universally unique application identifier. Must be unique across all BlackBerry 10
+        applications. It is permanent: a different id is a different app to the device, which does
+        not carry settings or data over. -->
+    <id>doctorrokter.BBTunnel</id>
+
+    <!-- The name that is displayed in the BlackBerry 10 application installer.
+        May have multiple values for each language. See samples or xsd schema file.
+        Optional. -->
+    <name>
+       Tunnel
+       <text xml:lang="ru">Tunnel</text>
+       <text xml:lang="pl">Tunnel</text>
+    </name>
+
+    <!-- A string value of the format <0-999>.<0-999>.<0-999> that represents
+        application version which can be used to check for application upgrade. Values
+        can also be 1-part or 2-part. It is not necessary to have a 3-part value.
+        An updated version of application must have a versionNumber value higher
+        than the previous version. Required. -->
+    <versionNumber>1.1.0</versionNumber>
+    <category>core.media</category>
+    <!-- 10.3.0 is the minimum: the QML imports bb.cascades 1.4, which arrived in BB10 OS 10.3.0. -->
+    <platformVersion>10.3.0</platformVersion>
+
+    <!-- Fourth digit segment of the package version. First three segments are
+        taken from the <versionNumber> element. Must be an integer from 0 to 2^16-1 -->
+    <buildId>46</buildId>
+    <packageLocale>ru,pl</packageLocale>
+
+    <!-- A string value (such as "v1", "2.5", or "Alpha 1") that represents
+        the version of the application, as it should be shown to users. Optional. -->
+    <!-- <versionLabel></versionLabel> -->
+
+    <!-- Description, displayed in the BlackBerry 10 application installer.
+        May have multiple values for each language. See samples or xsd schema file.
+        Optional. -->
+    <description>
+       WireGuard, AmneziaWG and Tailscale for BlackBerry 10 on an engine of its own: profiles from a file, a QR code or text, several tunnels at once, always on from boot, DNS through the tunnel. Requires a phone with root v4.
+       <text xml:lang="ru">WireGuard, AmneziaWG и Tailscale для BlackBerry 10 на собственном движке: профили из файла, QR-кода или текста, несколько туннелей сразу, постоянное подключение с загрузки, DNS через туннель. Нужен телефон с root v4.</text>
+       <text xml:lang="pl">WireGuard, AmneziaWG i Tailscale na BlackBerry 10 na własnym silniku: profile z pliku, kodu QR lub tekstu, kilka tuneli naraz, stałe połączenie od startu telefonu, DNS przez tunel. Wymagany telefon z root v4.</text>
+    </description>
+
+    <!-- Copyright information. Optional. -->
+    <!-- <copyright></copyright> -->
+
+    <!-- Name of author which is used for signing. Must match the developer
+        name of your development certificate. -->
+    <author>Mikhail Chachkouski</author>
+    <configuration name="Device-Debug">
+        <platformArchitecture>armle-v7</platformArchitecture>
+        <entryPointType>Qnx/Elf</entryPointType>
+
+        <asset entryPointId="BBTunnel" path="arm/o.le-v7-g/BBTunnel"
+            entry="true" type="Qnx/Elf">BBTunnel</asset>
+        <asset entryPointId="BBTunnelService"
+            path="../BBTunnelService/arm/BBTunnelService"
+            type="Qnx/Elf">BBTunnelService</asset>
+    </configuration>
+
+    <configuration name="Device-Release">
+        <platformArchitecture>armle-v7</platformArchitecture>
+        <entryPointType>Qnx/Cascades</entryPointType>
+
+        <asset entryPointId="BBTunnel" path="arm/o.le-v7/BBTunnel.so"
+            entry="true" type="Qnx/Cascades">BBTunnel.so</asset>
+        <asset entryPointId="BBTunnelService"
+            path="../BBTunnelService/arm/BBTunnelService"
+            type="Qnx/Elf">BBTunnelService</asset>
+    </configuration>
+
+    <configuration name="Device-Profile">
+        <platformArchitecture>armle-v7</platformArchitecture>
+        <entryPointType>Qnx/Elf</entryPointType>
+
+        <asset entryPointId="BBTunnel" path="arm-p/o.le-v7-g/BBTunnel"
+            entry="true" type="Qnx/Elf">BBTunnel</asset>
+        <asset entryPointId="BBTunnelService"
+            path="../BBTunnelService/arm/BBTunnelService"
+            type="Qnx/Elf">BBTunnelService</asset>
+    </configuration>
+
+    <configuration name="Simulator-Debug">
+        <platformArchitecture>x86</platformArchitecture>
+        <entryPointType>Qnx/Elf</entryPointType>
+
+        <asset entryPointId="BBTunnel" path="x86/o-g/BBTunnel"
+            entry="true" type="Qnx/Elf">BBTunnel</asset>
+        <asset entryPointId="BBTunnelService"
+            path="../BBTunnelService/x86/BBTunnelService"
+            type="Qnx/Elf">BBTunnelService</asset>
+    </configuration>
+
+    <entryPoint id="BBTunnel">
+        <name>Tunnel</name>
+    </entryPoint>
+
+    <entryPoint id="BBTunnelService">
+        <name>BBTunnel Service</name>
+        <entryPointType>Qnx/Elf</entryPointType>
+        <!-- The background half: autostart, keeping the tunnel daemon alive and Hub notifications
+             while the GUI is closed (docs/PLAN.md). -->
+        <permission system="true">_sys_run_headless</permission>
+        <permission system="true">_sys_headless_nostop</permission>
+    </entryPoint>
+
+    <invoke-target id="doctorrokter.BBTunnelService">
+        <invoke-target-type>application.headless</invoke-target-type>
+        <invoke-target-name>BBTunnel Service</invoke-target-name>
+        <entry-point-id>BBTunnelService</entry-point-id>
+        <filter>
+            <action>bb.action.system.STARTED</action>
+            <mime-type>application/vnd.blackberry.system.event.STARTED</mime-type>
+            <property var="uris" value="data://local" />
+        </filter>
+        <!-- The package was upgraded: the service exits so the new binary loads (KB 7.2). -->
+        <filter>
+            <action>bb.action.system.UPDATED</action>
+            <mime-type>application/vnd.blackberry.system.event.UPDATED</mime-type>
+            <property var="uris" value="data://local" />
+        </filter>
+        <filter>
+            <action>bb.action.RESTART</action>
+            <mime-type>*</mime-type>
+            <property var="uris" value="data://local" />
+        </filter>
+        <filter>
+            <action>bb.action.STOP</action>
+            <mime-type>*</mime-type>
+            <property var="uris" value="data://local" />
+        </filter>
+        <filter>
+            <action>bb.action.START</action>
+            <mime-type>*</mime-type>
+            <property var="uris" value="data://local" />
+        </filter>
+        <!-- Sent by the GUI on every launch, so the service runs right after an install too. -->
+        <filter>
+            <action>doctorrokter.BBTunnelService.START</action>
+            <mime-type>*</mime-type>
+            <property var="uris" value="headless:" />
+        </filter>
+        <!-- The restart the service books for itself before exiting on an update (Syno's and
+             BBWeather's way: nothing else brings a nostop service back with the new binary). -->
+        <filter>
+            <action>bb.action.system.TIMER_FIRED</action>
+            <mime-type>*</mime-type>
+            <property var="uris" value="data://local" />
+        </filter>
+    </invoke-target>
+
+    <invoke-target id="doctorrokter.BBTunnel">
+        <invoke-target-type>application</invoke-target-type>
+        <invoke-target-name>Tunnel</invoke-target-name>
+        <icon>
+            <image>icon.png</image>
+        </icon>
+        <entry-point-id>BBTunnel</entry-point-id>
+        <!-- A tap on the service's notification: that profile's page (the id in the data) -
+             ApplicationUI::onInvoked. -->
+        <filter>
+            <action>doctorrokter.BBTunnel.OPENPROFILE</action>
+            <mime-type>text/plain</mime-type>
+        </filter>
+        <!-- "Open in Tunnel": a WireGuard / AmneziaWG .conf, or an AmneziaVPN key as its app saves
+             one (.vpn), from the file manager, a mail or a messenger lands on the import sheet
+             (docs/APP.md, section 5). -->
+        <filter>
+            <action>bb.action.OPEN</action>
+            <action>bb.action.VIEW</action>
+            <mime-type>*</mime-type>
+            <property var="exts" value="conf,vpn" />
+            <property var="uris" value="file://" />
+        </filter>
+    </invoke-target>
+
+    <!-- Unique author ID assigned by signing authority. Required if using debug
+        tokens. -->
+    <!-- <authorId>ABC1234YjsnUk235h</authorId> -->
+
+    <initialWindow>
+        <autoOrients>true</autoOrients>
+        <systemChrome>none</systemChrome>
+    </initialWindow>
+
+    <!-- The application icon, provided at several sizes for BB10 densities, and the splash screens per
+         resolution and orientation: bb-shared/tools/gen-art.js (the command is in docs/APP.md, "Art"). -->
+    <icon>
+        <image>icon_144_x_144.png</image>
+        <image>icon_110_x_110.png</image>
+        <image>icon_96_x_96.png</image>
+        <image>icon_90_x_90.png</image>
+        <image>icon.png</image>
+    </icon>
+
+    <splashScreens>
+        <image>splash_1280_x_720.png</image>
+        <image>splash_1280_x_768.png</image>
+        <image>splash_1440_x_1440.png</image>
+        <image>splash_720_x_1280.png</image>
+        <image>splash_720_x_720.png</image>
+        <image>splash_768_x_1280.png</image>
+    </splashScreens>
+
+    <asset path="icon.png">icon.png</asset>
+    <asset path="icon_144_x_144.png">icon_144_x_144.png</asset>
+    <asset path="icon_110_x_110.png">icon_110_x_110.png</asset>
+    <asset path="icon_96_x_96.png">icon_96_x_96.png</asset>
+    <asset path="icon_90_x_90.png">icon_90_x_90.png</asset>
+    <asset path="splash_1280_x_720.png">splash_1280_x_720.png</asset>
+    <asset path="splash_1280_x_768.png">splash_1280_x_768.png</asset>
+    <asset path="splash_1440_x_1440.png">splash_1440_x_1440.png</asset>
+    <asset path="splash_720_x_1280.png">splash_720_x_1280.png</asset>
+    <asset path="splash_720_x_720.png">splash_720_x_720.png</asset>
+    <asset path="splash_768_x_1280.png">splash_768_x_1280.png</asset>
+    <asset path="assets">assets</asset>
+
+    <!-- The tunnel daemon with its command-line client. They have to ship INSIDE the package: BB10
+         refuses to execute a binary from an untrusted file system, so a build copied to /tmp or
+         /var/tmp dies with "Operation not permitted". An app's own sandbox is trusted, so these run.
+         Built separately with the gcc 9.3 cross toolchain: daemon/build.sh cross (into
+         daemon/build/bb10/, which is not in git: build it before packaging). The boot loop's script
+         rides along for the headless service to install (client/service/RootAutostart); root runs a
+         copy of it from a folder only root writes. -->
+    <asset path="../daemon/build/bb10/bbtunneld" type="Qnx/Elf">bbtunneld</asset>
+    <asset path="../daemon/build/bb10/btctl" type="Qnx/Elf">btctl</asset>
+    <asset path="../daemon/boot/bbtunneld-boot.sh">bbtunneld-boot.sh</asset>
+
+    <!-- Locale support: the app's catalogs and the service's (its Hub notifications). -->
+    <asset path="translations" dest="qm">
+        <include name="*.qm" />
+    </asset>
+    <asset path="../BBTunnelService/translations" dest="qm">
+        <include name="*.qm" />
+    </asset>
+
+    <!-- bb-shared QML (the settings rows and the coffee card)
+         and the card's images, packed from the sibling module: `import "shared"` in assets/,
+         `import "../shared"` in a subfolder (bb-shared README, sections 4-6a). -->
+    <asset path="../../bb-shared/ui/qml" dest="assets/shared">
+        <include name="*.qml" />
+    </asset>
+    <asset path="../../bb-shared/ui/images" dest="assets/shared/images">
+        <include name="*.png" />
+    </asset>
+
+    <!-- Hub notifications from the service: a lost connection, a daemon that does not answer. -->
+    <permission>post_notification</permission>
+    <!-- "Add from a file": the file picker reads the shared folders (downloads, documents). -->
+    <permission>access_shared</permission>
+    <!-- "Scan a QR code": the camera, for the profile's QR (docs/APP.md, section 5). -->
+    <permission>use_camera</permission>
+    <permission>access_internet</permission>
+    <permission>access_wifi_public</permission>
+    <!-- The GUI keeps its status updates while it is minimised. -->
+    <permission>run_when_backgrounded</permission>
+    <!-- The headless service: runs in the background, stays alive (nostop) and gets the 30 MB heap
+         ceiling instead of the default 3 MB (xlarge) - bb-shared/BB10-HEADLESS-MODES.md. Declared
+         at the package level, as in BBTelega and Syno, where the xlarge limit is confirmed. -->
+    <permission system="true">_sys_run_headless</permission>
+    <permission system="true">_sys_headless_nostop</permission>
+    <permission system="true">_sys_headless_xlarge</permission>
+    <env var="LD_LIBRARY_PATH" value="app/native/lib:/usr/lib/qt4/lib" />
+    <env var="CASCADES_THEME" value="dark"/>
+
+</qnx>

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="81" height="81" viewBox="0 0 81 81">
+  <!--
+    BB10's stock ca_wifi_0_locked.png (BB OS 10.3.02.2876 ICONS/Bonus/Glyphs, 81 x 81) redrawn as a vector,
+    to the same pixels, for the app icon and the splash screens (the glyph of bb-shared/tools/gen-art.js): the
+    PNG would have to grow up to 8 times. All of it opaque white - the stock one draws the arcs at half
+    alpha (no signal), grey.
+
+    The fan: a quarter circle either side of the vertical, its apex at (41.5, 63.25); three bands and the
+    dot, 12 px apart. The lock bottom right; the arcs are cut 3 px clear of it.
+  -->
+  <defs>
+    <mask id="clearOfLock" maskUnits="userSpaceOnUse" x="0" y="0" width="81" height="81">
+      <rect width="81" height="81" fill="#fff"/>
+      <g fill="#000" stroke="#000" stroke-width="6" stroke-linejoin="round">
+        <rect x="49" y="52" width="22" height="19" rx="1.5"/>
+        <path d="M52,52 V47.3 A8,8 0 0 1 68,47.3 V52 Z"/>
+      </g>
+    </mask>
+    <mask id="keyhole" maskUnits="userSpaceOnUse" x="0" y="0" width="81" height="81">
+      <rect width="81" height="81" fill="#fff"/>
+      <circle cx="60" cy="59.7" r="2.15" fill="#000"/>
+      <rect x="59" y="60" width="2" height="5" fill="#000"/>
+    </mask>
+  </defs>
+  <g fill="#fff" mask="url(#clearOfLock)">
+    <!-- bands: outer arc from -45 to +45 degrees, inner arc back; ends cut along the radius -->
+    <path d="M10.21,31.96 A44.25,44.25 0 0 1 72.79,31.96 L68.37,36.38 A38,38 0 0 0 14.63,36.38 Z"/>
+    <path d="M18.70,40.45 A32.25,32.25 0 0 1 64.30,40.45 L59.88,44.87 A26,26 0 0 0 23.12,44.87 Z"/>
+    <path d="M27.18,48.93 A20.25,20.25 0 0 1 55.82,48.93 L51.22,53.53 A13.75,13.75 0 0 0 31.78,53.53 Z"/>
+    <!-- the dot: the sector down to the apex -->
+    <path d="M41.5,63.25 L35.84,57.59 A8,8 0 0 1 47.16,57.59 Z"/>
+  </g>
+  <g fill="#fff" mask="url(#keyhole)">
+    <rect x="49" y="52" width="22" height="19" rx="1.5"/>
+    <path d="M52,52 V47.3 A8,8 0 0 1 68,47.3 V52 H65 V47.3 A5,5 0 0 0 55,47.3 V52 Z"/>
+  </g>
+</svg>

@@ -1,0 +1,28 @@
+[
+    {
+        "version": "1.1.0",
+        "date": "2026-11-09",
+        "changes": [
+            "Ikona VPN na pasku stanu, gdy tunel jest włączony.",
+            "Zawsze włączone: jeden profil WireGuard lub AmneziaWG i jeden Tailscale razem."
+        ]
+    },
+    {
+        "version": "1.0.0",
+        "date": "2026-11-09",
+        "changes": [
+            "Twoje tunele WireGuard i AmneziaWG na BlackBerry 10, IPv4 i IPv6: dodaj profil z pliku .conf, z kodu QR lub wklejając tekst - albo otwórz .conf \"w Tunnel\" z poczty lub menedżera plików.",
+            "Działa też klucz AmneziaVPN: jego tekst (vpn://...), plik .vpn lub kody QR, które pokazuje AmneziaVPN.",
+            "Tailscale: urządzenia twojej sieci - także NAS za dowolnym routerem - po nazwie (MagicDNS) lub pod adresami 100.x, logowanie przez link - otwierany na komputerze lub innym telefonie z kodu QR - lub kluczem uwierzytelniania; ruch idzie bezpośrednio - w tej samej sieci (NAS w domu przez Wi-Fi) i przez internet, gdy routery obu stron na to pozwalają - w przeciwnym razie przez przekaźniki Tailscale, także wewnątrz pełnego tunelu, np. WARP.",
+            "Lista połączeń: przełącznik przy każdym profilu, jego stan w słowach, kilka tuneli naraz - dzielony obok tego, który prowadzi cały ruch.",
+            "Strona profilu: stan i co oznacza, ruch i ostatni handshake, klucz publiczny, adresy, DNS, serwer i trasy.",
+            "Serwery DNS tunelu działają dla całego telefonu, póki tunel jest włączony: nazwy są wyszukiwane przez tunel, a nie obok niego.",
+            "Zawsze włączony: profil łączy się przy starcie telefonu i trzyma się przy zmianie sieci.",
+            "Powiadomienia usługi w tle: utracone połączenie, usługa tunelu nie odpowiada, a na życzenie - cichy znak w Hubie, póki tunel działa.",
+            "Diagnostyka: dziennik usługi tunelu, na życzenie - szczegółowy przez pewien czas (wyłącza się sam); wszystkie dzienniki, z jej uruchomieniem przy starcie, udostępniane jednym dotknięciem.",
+            "Aktualizacja aplikacji Tunnel zaczyna działać po ponownym uruchomieniu telefonu - aplikacja powie, kiedy jest ono potrzebne.",
+            "Jak zacząć: przewodnik przy pierwszym uruchomieniu i w menu aplikacji - usługa tunelu i jej uruchamianie przy starcie, które aplikacja konfiguruje sama, czy usługa odpowiada, i pierwszy profil.",
+            "Angielski, rosyjski i polski."
+        ]
+    }
+]

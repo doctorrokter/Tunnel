@@ -1,0 +1,28 @@
+[
+    {
+        "version": "1.1.0",
+        "date": "2026-11-09",
+        "changes": [
+            "The VPN key in the status bar while a tunnel is up.",
+            "Always on: one WireGuard or AmneziaWG profile and one Tailscale profile together."
+        ]
+    },
+    {
+        "version": "1.0.0",
+        "date": "2026-11-09",
+        "changes": [
+            "Your WireGuard and AmneziaWG tunnels on BlackBerry 10, IPv4 and IPv6: add a profile from a .conf file, a QR code or pasted text - or open a .conf \"in Tunnel\" from a mail or the file manager.",
+            "An AmneziaVPN key works too: its text (vpn://...), a .vpn file or the QR codes AmneziaVPN shows for it.",
+            "Tailscale: your tailnet's devices - a NAS behind any router too - by name (MagicDNS) or by their 100.x addresses, logged in by a link - opened on a computer or another phone from its QR code - or with an auth key; the traffic goes directly - in the same network (a NAS at home over Wi-Fi) and through the internet when the routers on both sides let it - otherwise through Tailscale's relays, inside a full tunnel such as WARP too.",
+            "The connections list: a switch per profile, its state in words, several tunnels at once - a split one beside the one that takes all traffic.",
+            "A profile's page: its state and what it means, the traffic and the last handshake, its public key, addresses, DNS, server and routes.",
+            "A tunnel's DNS servers serve the whole phone while it is up: names are looked up through the tunnel, not past it.",
+            "Always on: a profile that comes up when the phone boots and stays up across network changes.",
+            "Notifications from the background service: a lost connection, a tunnel service that does not answer, and on request a quiet mark in the Hub while a tunnel is up.",
+            "Diagnostics: the tunnel service's log, a detailed one for a while when you ask (it turns itself off); all the logs - its start at boot included - shared in one tap.",
+            "An update of Tunnel takes effect after a restart of the phone - the app says when one is needed.",
+            "How to start: a guide on the first start and in the app menu - the tunnel service and its start at boot, which the app sets up by itself, whether the service answers, and your first profile.",
+            "English, Russian and Polish."
+        ]
+    }
+]

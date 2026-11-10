@@ -1,0 +1,1 @@
+{"User":{"ID":10,"DisplayName":"Misha","ProfilePicURL":"https://example.com/p.png","Created":"2026-09-30T12:00:00Z"},"Login":{"ID":20,"Provider":"github","LoginName":"misha@example.com","DisplayName":"Миша \u003c\u0026\u003e"},"NodeKeyExpired":false,"MachineAuthorized":true,"AuthURL":"","NodeKeySignature":null,"Error":""}

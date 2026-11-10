@@ -1,0 +1,23 @@
+# Line endings. The repository stores LF; each clone checks out per its own core.autocrlf
+# (CRLF on a Windows machine with autocrlf=true - Momentics, qmake and qcc read either).
+* text=auto
+
+# Scripts run by bash (Git Bash, WSL, Linux) stay LF even on a Windows checkout: a CR at the end
+# of the shebang line is "/usr/bin/env: 'bash\r': No such file or directory" (KB 2.7).
+*.sh text eol=lf
+
+# Binary: never converted, never diffed as text.
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.bar  binary
+*.qm   binary
+*.so   binary
+*.so.* binary
+*.a    binary
+
+# Qt Linguist catalogs share the .ts extension with TypeScript. Mark them XML so a code host's
+# language bar does not count them as TypeScript.
+*.ts linguist-language=XML

@@ -1,0 +1,59 @@
+# --- BlackBerry 10 / Qt / Momentics build output (BBTunnel/, BBTunnelService/) ---
+arm/
+arm-p/
+x86/
+o-g/
+o.le-v7-g/
+*.o
+*.obj
+moc_*.cpp
+*.moc
+*_gch/
+*.gch
+.settings/
+
+# qmake / Momentics generated makefiles. arm/ arm-p/ x86/ are already ignored above, so this
+# only catches strays. KEEP the template Makefiles of both projects: the project's root shim
+# includes mk/cs-base.mk (the Device-Debug / Device-Release / Simulator targets) and the one in
+# translations/ drives lupdate/lrelease - a clone without them does not build (KB 2.6).
+Makefile
+Makefile.*
+!Makefile.am
+!/BBTunnel/Makefile
+!/BBTunnel/translations/Makefile
+!/BBTunnelService/Makefile
+!/BBTunnelService/translations/Makefile
+*.pro.user
+
+# Compiled translations (lrelease output; the .ts files are the source of truth)
+*.qm
+
+# Packaged output
+*.bar
+
+# bb-shared/tools/build-bar.sh's marker of the last build env, so it can force a clean when it
+# changes (development <-> production)
+.build-env
+
+# --- engine/ and daemon/ are built outside Momentics (WSL, gcc 9.3 cross + host builds for tests) ---
+/engine/build/
+/daemon/build/
+
+# --- Eclipse workspace (lives one level up - never commit one) ---
+.metadata/
+
+# --- OS / editor junk ---
+.DS_Store
+Thumbs.db
+desktop.ini
+*~
+*.swp
+.idea/
+.vscode/
+
+# --- Secrets: BB10 device SSH keys, signing material, WireGuard keys, local env (never commit) ---
+id_bb*
+*.p12
+*.csk
+.env
+*.key

@@ -1,0 +1,4 @@
+# The keys and configs start.sh makes on the first start: private keys, never in git.
+config/
+# SERVER_IP for this machine
+.env

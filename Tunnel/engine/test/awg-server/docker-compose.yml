@@ -1,0 +1,29 @@
+# Tunnel's AmneziaWG test servers - README.md beside this file. `docker compose up -d` in this folder on a
+# PC with Docker Desktop (SERVER_IP set first), or a Container Manager project on a NAS.
+services:
+  amneziawg:
+    # The reference the engine is checked against (engine/test/interop/run_awg.sh): amneziawg-go
+    # v3.1.20260828 and amneziawg-tools v3.1.20260812. amd64 only.
+    image: amneziavpn/amneziawg-go:3.1.20260828
+    container_name: tunnel-awg
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    sysctls:
+      - net.ipv4.ip_forward=1
+    environment:
+      # The address the phone reaches this machine at in the home network - its Endpoint. From .env
+      # beside this file (SERVER_IP=192.168.1.82), which every compose command reads, or written here.
+      - SERVER_IP=${SERVER_IP:?set SERVER_IP to this machine's address in the home network}
+    # Below 49152: Windows reserves ranges above it for Hyper-V (51751-51950 on Misha's PC), and a port in
+    # one cannot be published.
+    ports:
+      - "41820:41820/udp"
+      - "41821:41821/udp"
+    volumes:
+      - ./config:/config
+      - ./start.sh:/start.sh:ro
+    # Carriage returns dropped first: a script that went through Windows still runs.
+    entrypoint: ["/bin/sh", "-c", "tr -d '\\r' < /start.sh > /tmp/start.sh && exec /bin/sh /tmp/start.sh"]
